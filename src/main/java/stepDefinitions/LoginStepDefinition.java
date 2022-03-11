@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
@@ -20,7 +21,12 @@ public class LoginStepDefinition{
 	 @Given("^user is already on Login Page$")
 	 public void user_already_on_login_page(){
 	 System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
-	 driver = new ChromeDriver();
+		 ChromeOptions options = new ChromeOptions();
+		 options.addArguments("headless");
+		 options.addArguments("disable-gpu");
+		 driver = new ChromeDriver(options);
+
+
 	 driver.get("https://applyonline.partnersfcu.org/apply");
 	 }
 	
