@@ -19,9 +19,9 @@ public class LoginStepDefinition{
 	
 	 @Given("^user is already on Login Page$")
 	 public void user_already_on_login_page(){
-	 System.setProperty("webdriver.chrome.driver","/Users/naveenkhunteta/Downloads/chromedriver");
+	 System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
 	 driver = new ChromeDriver();
-	 driver.get("https://www.freecrm.com/index.html");
+	 driver.get("https://applyonline.partnersfcu.org/apply");
 	 }
 	
 	
@@ -29,7 +29,7 @@ public class LoginStepDefinition{
 	 public void title_of_login_page_is_free_CRM(){
 	 String title = driver.getTitle();
 	 System.out.println(title);
-	 Assert.assertEquals("Free CRM in the cloud software boosts sales", title);
+	 Assert.assertEquals("Partners Federal Credit Union New Account Opening Portal", title);
 	 }
 	
 	 //Reg Exp:
