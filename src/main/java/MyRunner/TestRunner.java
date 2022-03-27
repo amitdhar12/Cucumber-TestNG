@@ -13,8 +13,8 @@ import cucumber.api.testng.TestNGCucumberRunner;
 
 
 @CucumberOptions(
-        features = "src/main/java/Features",
-        glue = {"stepDefinitions"},
+        features = "src/main/java/Features/login.feature",
+        glue = {"stepDefinitions/"},
         tags = {"~@Ignore"},
         format = {
                 "pretty",

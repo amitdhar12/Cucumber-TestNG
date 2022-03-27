@@ -1,11 +1,13 @@
 package stepDefinitions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
@@ -13,29 +15,41 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 public class LoginStepDefinition{
 
 	 WebDriver driver;
 
 	
 	 @Given("^user is already on Login Page$")
-	 public void user_already_on_login_page(){
-	 System.setProperty("webdriver.chrome.driver","/usr/bin/chromedriver");
+	 public void user_already_on_login_page()  {
+
+		/* System.setProperty("webdriver.chrome.driver","C:\\ws\\driver\\chromedriver.exe");
 		 ChromeOptions options = new ChromeOptions();
 		 options.addArguments("headless");
+		 options.addArguments("window-size=1920,1080");
 		 options.addArguments("disable-gpu");
-		 driver = new ChromeDriver(options);
+		 driver = new ChromeDriver(options);*/
+		 System.out.println("in setup");
 
+		 WebDriverManager.chromedriver().setup();
+		 driver = new ChromeDriver();
 
-	 driver.get("https://applyonline.partnersfcu.org/apply");
+		 driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		 driver.manage().window().maximize();
+		 driver.get("https://demo.success4.us");
+
+		 System.out.println("Test sleep");
 	 }
 	
 	
-	 @When("^title of login page is Free CRM$")
+	 @When("^title of home page is ServiceNow Developers$")
 	 public void title_of_login_page_is_free_CRM(){
 	 String title = driver.getTitle();
 	 System.out.println(title);
-	 Assert.assertEquals("Partners Federal Credit Union New Account Opening Portal", title);
+	 Assert.assertEquals("Success4 - demo.success4.us", driver.getTitle());
 	 }
 	
 	 //Reg Exp:
@@ -44,25 +58,42 @@ public class LoginStepDefinition{
 	
 	 @Then("^user enters \"(.*)\" and \"(.*)\"$")
 	 public void user_enters_username_and_password(String username, String password){
-	 driver.findElement(By.name("username")).sendKeys(username);
-	 driver.findElement(By.name("password")).sendKeys(password);
+
+
+
+
+
+
+		driver.findElement(By.xpath("//*[@id=\"email\"]")).sendKeys(username);
+		driver.findElement(By.name("password")).sendKeys(password);
 	 }
 	
 	 @Then("^user clicks on login button$")
 	 public void user_clicks_on_login_button() {
-	 WebElement loginBtn =
-	 driver.findElement(By.xpath("//input[@type='submit']"));
-	 JavascriptExecutor js = (JavascriptExecutor)driver;
-	 js.executeScript("arguments[0].click();", loginBtn);
+	 driver.findElement(By.xpath("//*[@id=\"submit\"]")).click();
+
 	 }
-	
+
 	
 	 @Then("^user is on home page$")
-	 public void user_is_on_hopme_page(){
-	 String title = driver.getTitle();
-	 System.out.println("Home Page title ::"+ title);
-	 Assert.assertEquals("CRMPRO", title);
+	 public void user_is_on_hopme_page() throws InterruptedException {
+		 Thread.sleep(5000);
+		 String title = driver.getTitle();
+		 System.out.println("Home Page title ::" + title);
+
+		 try {
+			 Assert.assertEquals("Success4 - demo.success4.us", title);
+		 } catch (AssertionError ae) {
+			 System.out.println("Invalid UserName and Password" +ae);
+		 }
 	 }
+	@Then("^user is on home page invalid$")
+	public void user_is_on_hopme_page_invalid() throws InterruptedException {
+		Thread.sleep(5000);
+		String title = driver.getTitle();
+		System.out.println("Home Page title ::"+ title);
+		Assert.assertEquals("Success4 - Auth", title);
+	}
 	 
 	 @Then("^user moves to new contact page$")
 	 public void user_moves_to_new_contact_page() {
@@ -87,8 +118,14 @@ public class LoginStepDefinition{
 	 public void close_the_browser(){
 		 driver.quit();
 	 }
-	
-	
-	
+
+
+	@Then("^user clicks on Express Application button$")
+	public void user_clicks_on_Express_Application() {
+		WebElement loginBtn =
+				driver.findElement(By.xpath("//*[@text()='Become a Member: Express Application']"));
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].click();", loginBtn);
+	}
 
 }
