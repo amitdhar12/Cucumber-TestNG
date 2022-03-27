@@ -7,7 +7,7 @@ When title of home page is ServiceNow Developers
 Then user enters "<username>" and "<password>"
 Then user clicks on login button
 Then user is on home page
-#Then Close the browser
+Then Close the browser
 
 
 Examples:
@@ -22,7 +22,7 @@ Examples:
 		Then user enters "<username>" and "<password>"
 		Then user clicks on login button
 		Then user is on home page
-		#Then Close the browser
+		Then Close the browser
 
 
 		Examples:
