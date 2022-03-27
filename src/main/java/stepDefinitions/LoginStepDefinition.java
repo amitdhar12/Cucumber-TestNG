@@ -26,8 +26,10 @@ public class LoginStepDefinition{
 	 @Given("^user is already on Login Page$")
 	 public void user_already_on_login_page()  {
 
-		System.setProperty("webdriver.chrome.driver","C:\\ws\\driver\\chromedriver.exe");
-		 ChromeOptions options = new ChromeOptions();
+		//System.setProperty("webdriver.chrome.driver","C:\\ws\\driver\\chromedriver.exe");
+
+		 WebDriverManager.chromedriver().setup();
+		ChromeOptions options = new ChromeOptions();
 		 options.addArguments("headless");
 		 options.addArguments("window-size=1920,1080");
 		 options.addArguments("disable-gpu");
