@@ -56,6 +56,13 @@ public class LoginStepDefinition{
 	 System.out.println(title);
 	 Assert.assertEquals("Success4 - demo.success4.us", driver.getTitle());
 	 }
+
+	@When("^title of home page is ServiceNow Developers verify$")
+	public void title_of_login_page_is_free_CRM_1(){
+		String title = driver.getTitle();
+		System.out.println(title);
+		Assert.assertEquals("Success4 - Auth", driver.getTitle());
+	}
 	
 	 //Reg Exp:
 	 //1. \"([^\"]*)\"
