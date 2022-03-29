@@ -14,6 +14,7 @@ import org.testng.Assert;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +30,8 @@ public class LoginStepDefinition{
 		//System.setProperty("webdriver.chrome.driver","C:\\ws\\driver\\chromedriver.exe");
 
 		 WebDriverManager.chromedriver().setup();
-		ChromeOptions options = new ChromeOptions();
+
+		 ChromeOptions options = new ChromeOptions();
 		 options.addArguments("headless");
 		 options.addArguments("window-size=1920,1080");
 		 options.addArguments("disable-gpu");
@@ -82,10 +84,11 @@ public class LoginStepDefinition{
 		 Thread.sleep(5000);
 		 String title = driver.getTitle();
 		 System.out.println("Home Page title ::" + title);
-
+		// Assert.assertEquals("Success4 - demo.success4.us", title);
 		 try {
 			 Assert.assertEquals("Success4 - demo.success4.us", title);
 		 } catch (AssertionError ae) {
+			// logger.error("Failed to verify project name");
 			 System.out.println("Invalid UserName and Password" +ae);
 		 }
 	 }
@@ -129,5 +132,12 @@ public class LoginStepDefinition{
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].click();", loginBtn);
 	}
+
+	@Then("^user clicks on Menu button$")
+	public void user_clicks_on_Menu_Application() {
+		driver.findElement(By.xpath("/html/body/div[1]/section/ul/li[2]/div/i")).click();
+
+	}
+
 
 }

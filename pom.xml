@@ -78,6 +78,14 @@
 			<version>1.7.36</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
+		<dependency>
+			<groupId>net.masterthought</groupId>
+			<artifactId>cucumber-reporting</artifactId>
+			<version>5.6.1</version>
+		</dependency>
+
+
 	</dependencies>
 	<build>
 		<plugins>
@@ -118,7 +126,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>Partners Federal Credit Union</projectName>  <!-- Replace with project name -->
+							<projectName>Success4</projectName>  <!-- Replace with project name -->
 							<outputDirectory>target/cucumber-reports/advanced-reports</outputDirectory>
 							<cucumberOutput>target/cucumber-reports/CucumberTestReport.json</cucumberOutput>
 							<buildNumber>1</buildNumber>

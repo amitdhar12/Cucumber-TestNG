@@ -16,12 +16,13 @@ import cucumber.api.testng.TestNGCucumberRunner;
         features = "src/main/java/Features/login.feature",
         glue = {"stepDefinitions/"},
         tags = {"~@Ignore"},
-        format = {
-                "pretty",
-                "html:target/cucumber-reports/cucumber-pretty",
-                "json:target/cucumber-reports/CucumberTestReport.json",
-                "rerun:target/cucumber-reports/rerun.txt"
-        },plugin = "json:target/cucumber-reports/CucumberTestReport.json")
+
+
+plugin = {"pretty",
+        "html:target/cucumber-reports/CucumberTestReport.html",
+        "json:target/cucumber-reports/CucumberTestReport.json"
+        })
+
 
 public class TestRunner {
     private TestNGCucumberRunner testNGCucumberRunner;
