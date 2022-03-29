@@ -13,7 +13,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 
 
 @CucumberOptions(
-        features = "src/main/java/Features/login.feature",
+        features = "src/main/java/Features",
         glue = {"stepDefinitions/"},
         tags = {"~@Ignore"},
 
