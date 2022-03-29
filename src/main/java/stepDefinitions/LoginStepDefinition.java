@@ -28,8 +28,9 @@ public class LoginStepDefinition{
 	 public void user_already_on_login_page()  {
 
 		//System.setProperty("webdriver.chrome.driver","C:\\ws\\driver\\chromedriver.exe");
+		 System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
 
-		 WebDriverManager.chromedriver().setup();
+		 //WebDriverManager.chromedriver().setup();
 
 		 ChromeOptions options = new ChromeOptions();
 		 options.addArguments("headless");
